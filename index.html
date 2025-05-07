@@ -1,42 +1,97 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
+  <meta charset="UTF-8">
+  <title>Elif'e Özel</title>
   <style>
-    .highlight.text {
+    body {
+      text-align: center;
+      margin-top: 100px;
+      font-family: 'Segoe UI', sans-serif;
+      background: #fff0f5;
+    }
+
+    .message {
+      font-size: 40px;
+      color: #ff69b4;
+      font-weight: bold;
+    }
+
+    .celebrate-button {
+      margin-top: 20px;
+      padding: 15px 30px;
+      font-size: 18px;
+      background-color: #ffb6c1;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    .celebrate-button:hover {
+      background-color: #ff69b4;
+    }
+
+    .highlight-text {
       transform: translateY(-50px);
       opacity: 0;
-      animation : slideIn 1.5s forwards;
+      animation: slideIn 1.5s forwards;
     }
+
     @keyframes slideIn {
-      from [ transform: translateY(-50px); opacity: 0; }
-    to { transform : translateY(0) ; opacity : 1 ; }
-        }
-      </style>
+      from {
+        transform: translateY(-50px);
+        opacity: 0;
+      }
+      to {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+
+    .heart {
+      position: absolute;
+      font-size: 24px;
+      animation: float 4s infinite;
+    }
+
+    @keyframes float {
+      0% {
+        transform: translateY(0);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(-100vh);
+        opacity: 0;
+      }
+    }
+  </style>
 </head>
-  <body>
-    <div class ="message" id="message" >SEN HAYATIMDA</div>
-    <button class= "celebrate-button" id="celebrateButton">OLDUĞUNDA..</button>
+<body>
+  <div class="message" id="message">SEN HAYATIMDA</div>
+  <div id="hearts"></div>
+  <button class="celebrate-button" id="celebrateButton">OLDUĞUNDA..</button>
 
-    <script>
-      document.getElementById("celebrateButton").addEventListener("click", function() {
-        document.body.style.background= "#ffccdd" ;
-        const message = document.getElementById("hearts");
-        message.innerText = "DÜNYA DAHA GÜZEL";
-        message.classList.add("highlight-text");
-        this.style.background = "#ff69b4";
+  <script>
+    document.getElementById("celebrateButton").addEventListener("click", function () {
+      document.body.style.background = "#ffccdd";
+      const message = document.getElementById("message");
+      message.innerText = "DÜNYA DAHA GÜZEL";
+      message.classList.add("highlight-text");
+      this.style.background = "#ff69b4";
 
-        const heartsContainer = document.getElementByID("hearts");
-        heartsContainer.innerHTML = "";
+      const heartsContainer = document.getElementById("hearts");
+      heartsContainer.innerHTML = "";
 
-        for (let i = 0; i<50; i++) {
-          let heart = document.createElement("div");
-          heart.classlist.add("heart");
-          heart.İnnerHTML = "💖";
-          heart.style.left = Math.random() *100* "vw";
-          heart.style.animationDuration = (Math.random() * 2 * 2) * "s";
-          heartsConstainer.appChild(heart);
-        }
-        
+      for (let i = 0; i < 50; i++) {
+        let heart = document.createElement("div");
+        heart.classList.add("heart");
+        heart.innerHTML = "💖";
+        heart.style.left = Math.random() * 100 + "vw";
+        heart.style.top = Math.random() * 100 + "vh";
+        heart.style.animationDuration = (2 + Math.random() * 3) + "s";
+        heartsContainer.appendChild(heart);
+      }
     });
   </script>
 </body>
